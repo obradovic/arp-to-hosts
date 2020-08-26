@@ -1,0 +1,12 @@
+black==19.10b0
+coverage==5.2.1
+delegator.py==0.1.1
+ipython==7.17.0
+mock==4.0.2
+mypy==0.782
+pylint==2.6.0
+pylint-runner==0.6.0
+pytest==6.0.1
+pytest-cov==2.10.1
+python-hosts==1.0.0
+validators==0.18.0
