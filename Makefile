@@ -49,6 +49,7 @@ wheel: wheel-build wheel-install
 
 # Builds the wheel
 wheel-build:
+	@rm -f dist/*.whl
 	@python3 setup.py bdist_wheel
 
 # Installs the wheel
