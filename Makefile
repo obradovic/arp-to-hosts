@@ -37,7 +37,7 @@ test:
 	@py.test --cov-report term-missing --cov=. .
 
 run:
-	@./arp_to_hosts
+	@./arp-to-hosts
 
 clean:
 	@rm -rf .coverage .mypy_cache .pytest_cache __pycache__ build dist *.egg-info

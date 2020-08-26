@@ -1,5 +1,5 @@
 """
-    Tests for arp_to_hosts
+    Tests for arp-to-hosts
 """
 from mock import MagicMock, patch  # create_autospec
 import pytest

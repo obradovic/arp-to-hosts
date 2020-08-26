@@ -6,15 +6,15 @@ with open("README.md", "r") as readme:
     long_description = readme.read()
 
 setuptools.setup(
-    name="arp_to_hosts",
-    version="0.1",
-    scripts=["arp_to_hosts"],
+    name="arp-to-hosts",
+    version="0.1.1",
+    scripts=["arp-to-hosts"],
     author="Zo Obradovic",
     author_email="ping@obradovic.com",
     description="arp-scan to /etc/hosts",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/obradovic/arp_to_hosts",
+    url="https://github.com/obradovic/arp-to-hosts",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
