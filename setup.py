@@ -7,7 +7,7 @@ with open("README.md", "r") as readme:
 
 setuptools.setup(
     name="arp-to-hosts",
-    version="0.1.1",
+    version="0.1.2",
     scripts=["arp-to-hosts"],
     author="Zo Obradovic",
     author_email="ping@obradovic.com",
