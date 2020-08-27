@@ -8,7 +8,7 @@ ifdef NO_TIMER
 endif
 
 
-all: black typecheck pep lint test
+all: black ci
 	@echo ""
 	@echo "ALL GOOD!"
 	@echo ""
@@ -25,7 +25,7 @@ lint:
 	@pylint_runner -v --rcfile .pylintrc .
 
 pep:
-	@pycodestyle --max-line-length 100 *.py
+	@pycodestyle *.py
 
 typecheck:
 	@mypy *.py
@@ -33,7 +33,8 @@ typecheck:
 coverage: coverage-run coverage-report
 
 coverage-run:
-	@coverage run --source=. -m pytest -c setup.cfg --durations=5 --disable-warnings .
+	@coverage run --source=. -m pytest -c setup.cfg --durations=5 -vv .
+	@# @py.test --cov-report term-missing --cov=. .
 
 coverage-report:
 	@echo
@@ -41,7 +42,7 @@ coverage-report:
 	@coverage report -m
 
 test:
-	@py.test --cov-report term-missing --cov=. .
+	@py.test .
 
 run:
 	@./arp-to-hosts
