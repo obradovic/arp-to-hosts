@@ -9,6 +9,9 @@ on:
     branches:
       - master
 
+env:
+  COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+
 jobs:
   make:
     name: make
@@ -16,5 +19,18 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v2
-      - run: make
-      - run: make coverage
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.7.9
+      - uses: actions/cache@v2
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-
+          restore-keys: ${{ runner.os }}-pip-
+      - run: pip install -r requirements.txt
+
+      # formatting, type safety, linting, tests, test coverage
+      - run: make ci
+
+      # submit results
+      - run: coveralls
