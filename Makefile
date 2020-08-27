@@ -8,12 +8,12 @@ ifdef NO_TIMER
 endif
 
 
-all: black typecheck lint test
+all: black typecheck pep lint test
 	@echo ""
 	@echo "ALL GOOD!"
 	@echo ""
 
-ci: blackcheck typecheck lint test coverage
+ci: blackcheck typecheck pep lint test coverage
 
 black:
 	@black *.py
@@ -23,6 +23,9 @@ blackcheck:
 
 lint:
 	@pylint_runner -v --rcfile .pylintrc .
+
+pep:
+	@pycodestyle --max-line-length 100 *.py
 
 typecheck:
 	@mypy *.py
