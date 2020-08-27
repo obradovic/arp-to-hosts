@@ -1,11 +1,7 @@
 .PHONY: .
 
 SHELL := /bin/bash
-
-TIMER := TIMEFORMAT="That took %1R seconds" && time  # bash built-in, requires bash to be the SHELL above
-ifdef NO_TIMER
-    TIMER :=
-endif
+TIMER = TIMEFORMAT="This make $(MAKECMDGOALS) target took %1R seconds" && time  # bash built-in, requires bash to be the SHELL above
 
 
 all: black ci
@@ -16,36 +12,36 @@ all: black ci
 ci: blackcheck typecheck pep lint test coverage
 
 black:
-	@black *.py
+	@$(TIMER) black *.py
 
 blackcheck:
-	@black --check *.py
+	@$(TIMER) black --check *.py
 
 lint:
-	@pylint_runner -v --rcfile .pylintrc .
+	@$(TIMER) pylint_runner -v --rcfile .pylintrc .
 
 pep:
-	@pycodestyle *.py
+	@$(TIMER) pycodestyle *.py
 
 typecheck:
-	@mypy *.py
+	@$(TIMER) mypy *.py
 
 coverage: coverage-run coverage-report
 
 coverage-run:
-	@coverage run --source=. -m pytest -c setup.cfg --durations=5 -vv .
+	@$(TIMER) coverage run --source=. -m pytest -c setup.cfg --durations=5 -vv .
 	@# @py.test --cov-report term-missing --cov=. .
 
 coverage-report:
 	@echo
 	@echo
-	@coverage report -m
+	@$(TIMER) coverage report -m
 
 test:
-	@py.test .
+	@$(TIMER) py.test .
 
 run:
-	@./arp-to-hosts
+	@$(TIMER) ./arp-to-hosts
 
 clean:
 	@rm -rf .coverage .mypy_cache .pytest_cache __pycache__ build dist *.egg-info
