@@ -55,12 +55,12 @@ def discover_hosts() -> HostsDict:
         ip_addr = fields[0]
         name = fields[2]
 
-        name = sanitize_hostname(name)
-        if not name:
+        sanitized_name = sanitize_hostname(name)
+        if not sanitized_name:
             print(f"WARNING: Invalid hostname found: {name}: {ip_addr}. Skipping.")
             continue
 
-        ret[ip_addr] = name
+        ret[ip_addr] = sanitized_name
 
     # replace strings in the dict values?
     ret = {k: v.replace("KNOWN-", "") for k, v in ret.items()}
