@@ -13,15 +13,19 @@ all: black typecheck lint test
 	@echo "ALL GOOD!"
 	@echo ""
 
+ci: blackcheck typecheck lint test coverage
+
 black:
 	@black *.py
+
+blackcheck:
+	@black --check *.py
 
 lint:
 	@pylint_runner -v --rcfile .pylintrc .
 
 typecheck:
 	@mypy *.py
-
 
 coverage: coverage-run coverage-report
 
