@@ -33,8 +33,13 @@ def write_hosts(hostmap: HostsDict) -> None:
         )
         response = hosts.add([new_entry], force=True)
 
-    response = hosts.write()
-    print(f"Success! {response['ipv4_entries_written']} entries written to {HOSTSFILE}")
+    try:
+        response = hosts.write()
+        print(
+            f"Success! {response['ipv4_entries_written']} entries written to {HOSTSFILE}"
+        )
+    except:  # noqa  # pylint: disable=bare-except
+        print(f"ERROR: Cannot write to {HOSTSFILE}. Run with sudo?")
 
 
 def discover_hosts() -> HostsDict:
