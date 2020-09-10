@@ -3,7 +3,7 @@
 """
 from mock import MagicMock, patch  # create_autospec
 import pytest
-import arp_to_hosts as test
+import arp_to_hosts.arp_to_hosts as test
 
 TAB = test.TAB
 NL = test.NL
