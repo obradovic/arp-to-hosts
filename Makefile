@@ -2,7 +2,7 @@
 
 SHELL := /bin/bash
 TIMER = TIMEFORMAT="This make $(MAKECMDGOALS) target took %1R seconds" && time  # bash built-in, requires bash to be the SHELL above
-SRC := *.py
+SRC := arp_to_hosts/*.py
 PYTHONPATH = export PYTHONPATH=.
 
 
@@ -43,7 +43,7 @@ test:
 	@$(TIMER) py.test .
 
 run:
-	@$(PYTHONPATH) $(TIMER) python arp_to_hosts.py
+	@$(PYTHONPATH) $(TIMER) python arp_to_hosts/arp_to_hosts.py
 
 clean:
 	@rm -rf .coverage .mypy_cache .pytest_cache __pycache__ build dist *.egg-info
